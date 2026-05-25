@@ -1,0 +1,30 @@
+# Virtual environment
+venv/
+.venv/
+
+# MediaPipe model (scaricato automaticamente al primo avvio)
+hand_landmarker.task
+
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+
+# Dataset e modelli trainati (file grandi, generati in locale)
+data/gestures/*.csv
+models/*.pkl
+models/*.pt
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# Log
+*.log
