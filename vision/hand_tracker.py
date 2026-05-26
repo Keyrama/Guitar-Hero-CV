@@ -17,7 +17,6 @@ from config import (
 
 # Indici landmark per ogni dito [MCP, PIP, DIP, TIP]
 FINGER_LANDMARK_INDICES = {
-    0: [1,  2,  3,  4],   # Pollice
     1: [5,  6,  7,  8],   # Indice
     2: [9,  10, 11, 12],  # Medio
     3: [13, 14, 15, 16],  # Anulare
@@ -101,7 +100,6 @@ class HandTracker:
 
         # Connessioni mano definite manualmente (stesse di MediaPipe)
         CONNECTIONS = [
-            (0,1),(1,2),(2,3),(3,4),          # Pollice
             (0,5),(5,6),(6,7),(7,8),           # Indice
             (0,9),(9,10),(10,11),(11,12),      # Medio
             (0,13),(13,14),(14,15),(15,16),    # Anulare
@@ -115,6 +113,8 @@ class HandTracker:
             cv2.line(frame_bgr, pts[start], pts[end], (80, 80, 80), 2)
 
         for idx, (cx, cy) in pts.items():
+            if idx in (1,2,3,4):
+                continue
             cv2.circle(frame_bgr, (cx, cy), 5, (0, 255, 0), -1)
             cv2.putText(frame_bgr, str(idx), (cx + 5, cy - 5),
                         cv2.FONT_HERSHEY_SIMPLEX, 0.3, (255, 255, 255), 1)
