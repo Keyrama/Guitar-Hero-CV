@@ -14,6 +14,7 @@ sys.path.insert(0, ".")
 from sklearn.preprocessing import StandardScaler
 from sklearn.svm import SVC
 from sklearn.neural_network import MLPClassifier
+from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split, cross_val_score
 from sklearn.metrics import classification_report, confusion_matrix
 
@@ -98,6 +99,14 @@ def main():
     )
     mlp = train_and_evaluate("MLP (256→128→64 ReLU)", mlp, X_train, X_test, y_train, y_test)
     save_model(mlp, "mlp")
+
+    rf = RandomForestClassifier(
+        n_estimators=200,
+        max_depth=None,
+        random_state=42,
+    )
+    rf = train_and_evaluate("Random Forest (200 alberi)", rf, X_train, X_test, y_train, y_test)
+    save_model(rf, "rf")
 
     print("\n[INFO] Training completato. Modelli pronti in:", MODELS_DIR)
 
